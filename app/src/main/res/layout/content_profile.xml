@@ -139,7 +139,7 @@
                 android:imeOptions="actionUnspecified"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:inputType="numberSigned" />
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 

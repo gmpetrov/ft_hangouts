@@ -31,4 +31,8 @@
     <string name="menu_item_red">Rouge</string>
     <string name="menu_item_green">Vert</string>
     <string name="menu_item_blue">Bleu</string>
+    <string name="sms_input_hint">Votre message</string>
+    <string name="send_sms_success">SMS envoyé</string>
+    <string name="send_sms_error">Message vide</string>
+    <string name="empty_sms_conversation">Vous avez aucun message</string>
 </resources>

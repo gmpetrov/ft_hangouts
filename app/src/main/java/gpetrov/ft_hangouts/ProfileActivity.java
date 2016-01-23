@@ -18,7 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText        mLastname;
     private EditText        mPhone;
     private EditText        mEmail;
-    private Contact         mContact;
+    private Contact         mContact = null;
     private Button          mSave;
     private ImageButton     mCallAction;
     private ImageButton     mSendSmsAction;
@@ -57,6 +57,11 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "SEND SMS ACTION", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ProfileActivity.this, SendSmsActivity.class);
+
+                intent.putExtra(Constants.KEY_INTENT_PARAM_ID, mContact.getId());
+
+                startActivity(intent);
             }
         });
 

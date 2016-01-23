@@ -31,4 +31,9 @@
     <string name="menu_item_red">Red</string>
     <string name="menu_item_green">Green</string>
     <string name="menu_item_blue">Blue</string>
+    <string name="title_activity_send_sms">SendSmsActivity</string>
+    <string name="sms_input_hint">Type you message</string>
+    <string name="send_sms_success">SMS sent</string>
+    <string name="send_sms_error">Empty message</string>
+    <string name="empty_sms_conversation">You have no message</string>
 </resources>

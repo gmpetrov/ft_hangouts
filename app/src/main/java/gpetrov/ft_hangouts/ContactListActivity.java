@@ -24,6 +24,7 @@ public class ContactListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ContactListAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
     private DatabaseHandler _dbHandler;
     private TextView        mEmptyListText;
     private String          mDate;
