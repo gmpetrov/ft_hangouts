@@ -3,8 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="gpetrov.ft_hangouts.ContactListActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/menu_item_red"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/menu_item_red"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_green"
+        android:orderInCategory="100"
+        android:title="@string/menu_item_green"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_blue"
+        android:orderInCategory="100"
+        android:title="@string/menu_item_blue"
         app:showAsAction="never" />
 </menu>

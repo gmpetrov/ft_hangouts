@@ -1,6 +1,8 @@
 package gpetrov.ft_hangouts;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -91,7 +93,19 @@ public class ContactListActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_item_red) {
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#CF362A"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
+            return true;
+        }
+        else if (id == R.id.menu_item_green){
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#27A668"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
+            return true;
+        }
+        else if (id == R.id.menu_item_blue){
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#3035AE"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
             return true;
         }
 

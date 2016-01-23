@@ -16,19 +16,19 @@
         completions."
     </string>
     <string name="form_create_contact_field_email">Email</string>
-    <string name="create_contact_field_firstname">Firstname</string>
-    <string name="create_contact_field_lastname">Lastname</string>
+    <string name="create_contact_field_firstname">Prénom</string>
+    <string name="create_contact_field_lastname">Nom</string>
     <string name="create_contact_field_email">Email</string>
-    <string name="create_contact_field_phone">Phone</string>
-    <string name="create_contact_button_save">Save</string>
-    <string name="create_form_msg_fields_error">You have to complete all fields</string>
-    <string name="create_form_save_contact_success">Contact Created</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-    <string name="profile_update_success">Contact updated</string>
-    <string name="profile_update_error">No empty field allowed</string>
-    <string name="profile_delete_success">Contact deleted</string>
-    <string name="text_empty_list">You have no contacts</string>
-    <string name="menu_item_red">Red</string>
-    <string name="menu_item_green">Green</string>
-    <string name="menu_item_blue">Blue</string>
+    <string name="create_contact_field_phone">Telephone</string>
+    <string name="create_contact_button_save">Sauvegarder</string>
+    <string name="create_form_msg_fields_error">Vous devez renseigner tous les champs</string>
+    <string name="create_form_save_contact_success">Contacte créé</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="profile_update_success">Contacte mis à jour</string>
+    <string name="profile_update_error">Il ne peux y\'avoir des champs vides</string>
+    <string name="profile_delete_success">Contacte supprimé</string>
+    <string name="text_empty_list">Vous n\'avez aucun contacte</string>
+    <string name="menu_item_red">Rouge</string>
+    <string name="menu_item_green">Vert</string>
+    <string name="menu_item_blue">Bleu</string>
 </resources>
