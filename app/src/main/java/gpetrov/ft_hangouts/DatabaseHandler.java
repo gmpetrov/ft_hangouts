@@ -5,10 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by gmp on 22/01/16.
@@ -54,7 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
             cursor.moveToFirst();
 
 
-        Contact contact = new Contact(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+        Contact contact = new Contact(id, cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
         db.close();
         return contact;
     }
@@ -93,20 +91,17 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         return db.update(Constants.TABLE_CONTACTS, values, Constants.KEY_ID + "=?", new String[]{String.valueOf(contact.getId())});
     }
 
-    public List<Contact> getAllContacts(){
-        List<Contact> contacts = new ArrayList<Contact>();
+    public ArrayList<Contact> getAllContacts(){
+        ArrayList<Contact> contacts = new ArrayList<Contact>();
 
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.TABLE_CONTACTS, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.TABLE_CONTACTS + " ORDER BY " + Constants.KEY_FISTNAME, null);
 
-//        if (cursor.moveToFirst()){
-            while (cursor.moveToNext()) {
-                Log.d("DATABASE HANDLER", "YOLO");
-                Contact contact = new Contact(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-                contacts.add(contact);
-            }
+        while (cursor.moveToNext()) {
+            Contact contact = new Contact(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+            contacts.add(contact);
+        }
 
-//        }
         cursor.close();
         return contacts;
     }

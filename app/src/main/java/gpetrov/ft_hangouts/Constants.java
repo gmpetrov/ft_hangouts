@@ -12,6 +12,7 @@ public final class Constants {
     KEY_PHONE       = "phone",
     KEY_FISTNAME    = "firstname",
     KEY_LASTNAME    = "lastname",
-    KEY_EMAIL       = "email";
+    KEY_EMAIL       = "email",
+    KEY_INTENT_PARAM_ID = "id";
 
 }

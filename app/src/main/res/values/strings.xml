@@ -21,4 +21,11 @@
     <string name="create_contact_field_email">Email</string>
     <string name="create_contact_field_phone">Phone</string>
     <string name="create_contact_button_save">Save</string>
+    <string name="create_form_msg_fields_error">You have to complete all fields</string>
+    <string name="create_form_save_contact_success">Contact Created</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="profile_update_success">Contact updated</string>
+    <string name="profile_update_error">No empty field allowed</string>
+    <string name="profile_delete_success">Contact deleted</string>
+    <string name="text_empty_list">You have no contacts</string>
 </resources>

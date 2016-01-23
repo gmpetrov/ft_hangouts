@@ -7,23 +7,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 
 public class ContactListActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ContactListAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private DatabaseHandler _dbHandler;
+    private TextView        mEmptyListText;
+    private String          mDate;
 
-    private String[] myDataset = {"Jean", "Claude", "Jacques"};
+    private ArrayList<Contact> mContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,9 @@ public class ContactListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mDate = null;
 
+        mEmptyListText = (TextView)findViewById(R.id.text_empty_list);
         _dbHandler = new DatabaseHandler(getApplicationContext());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_recycler);
@@ -44,28 +49,13 @@ public class ContactListActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        mContacts = _dbHandler.getAllContacts();
 
+        if (mContacts.isEmpty()){ mEmptyListText.setVisibility(View.VISIBLE); }
 
-        //==============================================================
-
-        List<Contact> addableContacts = _dbHandler.getAllContacts();
-
-        int contactCount = _dbHandler.getContactsCount();
-        Log.d("CONTACT COUNT", String.valueOf(contactCount));
-
-        List<String> tmp = new ArrayList<String>();
-        for (int i = 0; i < contactCount; i++){
-            String firstname = addableContacts.get(i).getFirstname();
-            tmp.add(firstname);
-        }
-
-        String[] tmpArray = new String[tmp.size()];
-        String[] yolo = tmp.toArray(tmpArray);
-
-        //==============================================================
 
         // specify an adapter (see also next example)
-        mAdapter = new ContactListAdapter(yolo);
+        mAdapter = new ContactListAdapter(getApplicationContext(), mContacts);
         mRecyclerView.setAdapter(mAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -74,20 +64,11 @@ public class ContactListActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-//                _goToCreateContactActivity();
-                _saveContact();
+                _goToCreateContactActivity();
             }
         });
 
 
-    }
-
-    private void _saveContact(){
-        Contact contact = new Contact(_dbHandler.getContactsCount() + 1, "Jean", "jaques", "test@test.fr", "0102030405");
-
-        _dbHandler.creatContact(contact);
-
-        Toast.makeText(getApplicationContext(), "Contact Created", Toast.LENGTH_SHORT).show();
     }
 
     private void _goToCreateContactActivity(){
@@ -115,5 +96,40 @@ public class ContactListActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        mDate = getTime();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mDate != null){
+            Toast.makeText(getApplicationContext(), mDate, Toast.LENGTH_SHORT).show();
+        }
+
+        populateList();
+    }
+
+    private void populateList(){
+        mContacts = _dbHandler.getAllContacts();
+
+        if (mContacts.isEmpty()){ mEmptyListText.setVisibility(View.VISIBLE); }
+        else{ mEmptyListText.setVisibility(View.INVISIBLE); }
+
+        mAdapter.setDataSet(mContacts);
+    }
+
+    private String getTime(){
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c.getTime());
+        return formattedDate;
     }
 }
