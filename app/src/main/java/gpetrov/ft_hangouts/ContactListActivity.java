@@ -21,13 +21,17 @@ import java.util.Calendar;
 
 public class ContactListActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private ContactListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    // Needed for the Recycler
+    private RecyclerView                mRecyclerView;
+    private ContactListAdapter          mAdapter;
+    private RecyclerView.LayoutManager  mLayoutManager;
 
-    private DatabaseHandler _dbHandler;
-    private TextView        mEmptyListText;
-    private String          mDate;
+    // Database
+    private DatabaseHandler             _dbHandler;
+
+    // Fields
+    private TextView                    mEmptyListText;
+    private String                      mDate;
 
     private ArrayList<Contact> mContacts;
 
@@ -37,6 +41,7 @@ public class ContactListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         mDate = null;
 
         mEmptyListText = (TextView)findViewById(R.id.text_empty_list);
@@ -65,8 +70,8 @@ public class ContactListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+
+                // Start Creat Contact Activity
                 _goToCreateContactActivity();
             }
         });
@@ -141,6 +146,7 @@ public class ContactListActivity extends AppCompatActivity {
     }
 
     private String getTime(){
+
         Calendar c = Calendar.getInstance();
 
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");

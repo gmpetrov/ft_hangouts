@@ -87,7 +87,7 @@ public class SendSmsActivity extends AppCompatActivity {
             smsManager.sendTextMessage(number, null, msg, null, null);
             Toast.makeText(getApplicationContext(), R.string.send_sms_success, Toast.LENGTH_SHORT).show();
 
-            mSmsList.add(new Sms(msg, new Date().toString(), true));
+            mSmsList.add(new Sms(msg, String.valueOf(new Date().getTime()), true));
             mAdapter.notifyDataSetChanged();
 
             scrollToBottom();

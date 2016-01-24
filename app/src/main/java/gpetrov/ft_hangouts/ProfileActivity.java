@@ -3,12 +3,14 @@ package gpetrov.ft_hangouts;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -24,6 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageButton     mSendSmsAction;
     private ImageButton     mEditAction;
     private ImageButton     mDeleteAction;
+    private CoordinatorLayout  mGlobalLayout;
+    private RelativeLayout mProfileLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         _dbHandler = new DatabaseHandler(getApplicationContext());
+        mGlobalLayout = (CoordinatorLayout)findViewById(R.id.layout_profile_global);
+        mProfileLayout = (RelativeLayout)findViewById(R.id.layout_profile);
 
         int id = getIntent().getIntExtra(Constants.KEY_INTENT_PARAM_ID, 0);
 
@@ -56,7 +62,6 @@ public class ProfileActivity extends AppCompatActivity {
         mSendSmsAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "SEND SMS ACTION", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ProfileActivity.this, SendSmsActivity.class);
 
                 intent.putExtra(Constants.KEY_INTENT_PARAM_ID, mContact.getId());
@@ -69,7 +74,6 @@ public class ProfileActivity extends AppCompatActivity {
         mCallAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "CALL ACTION", Toast.LENGTH_SHORT).show();
                 String phone = mPhone.getText().toString();
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse("tel:" + phone));
@@ -139,35 +143,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void _disableFields(){
-
-//        mFirstname.setEnabled(false);
-//        mFirstname.setFocusable(false);
-//
-//        mLastname.setEnabled(false);
-//        mLastname.setFocusable(false);
-//
-//        mPhone.setEnabled(false);
-//        mPhone.setFocusable(false);
-//
-//        mEmail.setEnabled(false);
-//        mEmail.setFocusable(false);
-
         mSave.setVisibility(View.INVISIBLE);
     }
 
     private void _enableFields(){
-//        mFirstname.setEnabled(true);
-//        mFirstname.setFocusable(true);
-//
-//        mLastname.setEnabled(true);
-//        mLastname.setFocusable(true);
-//
-//        mPhone.setEnabled(true);
-//        mPhone.setFocusable(true);
-//
-//        mEmail.setEnabled(true);
-//        mEmail.setFocusable(true);
-
         mSave.setVisibility(View.VISIBLE);
     }
 }
